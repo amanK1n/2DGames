@@ -116,9 +116,6 @@ class GameScene: SKScene {
         let location = touch.location(in: self)
         let nodesAtPoint = nodes(at: location)
         
-        
-        
-        
         for case let node as SKSpriteNode in nodesAtPoint {
             guard node.name == "firework" else { continue }
             
