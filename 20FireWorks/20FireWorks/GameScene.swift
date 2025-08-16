@@ -8,6 +8,7 @@
 import SpriteKit
 
 class GameScene: SKScene {
+//    var scoreLabel: SKLabelNode?
     var gameTimer: Timer?
     var fireWorks = [SKNode]()
     let leftEdge = -22
@@ -17,6 +18,7 @@ class GameScene: SKScene {
     var score = 0 {
         didSet {
             
+          // scoreLabel?.text = "Score: \(score)"
         }
     }
     
@@ -27,13 +29,18 @@ class GameScene: SKScene {
         background.blendMode = .replace
         background.zPosition = -1
         addChild(background)
-//        let label = SKLabelNode(fontNamed: "Chalkduster")
-//        label.fontColor = .white
-//        label.zPosition = 1
-//        label.fontSize = 48
-//        label.text = "Happy Independence Day!"
-//        label.position = CGPoint(x: 512, y: 384)
-//        addChild(label)
+        
+    
+//        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+//           scoreLabel?.fontColor = .white
+//           scoreLabel?.fontSize = 20
+//           scoreLabel?.text = "Score: \(score)"
+//           scoreLabel?.position = CGPoint(x: 800, y: 700)
+//
+//           if let scoreLabel = scoreLabel {
+//               addChild(scoreLabel)
+//           }
+        
         gameTimer = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(launchFireworks), userInfo: nil, repeats: true)
     }
     func createFirework(xMovement: CGFloat, x: Int, y: Int, color: UIColor? = nil) {
@@ -160,12 +167,12 @@ class GameScene: SKScene {
     func explodeFireworks() {
         var numExploded = 0
 
-        for (index, fireworkContainer) in fireworks.enumerated().reversed() {
+        for (index, fireworkContainer) in fireWorks.enumerated().reversed() {
             guard let firework = fireworkContainer.children.first as? SKSpriteNode else { continue }
 
             if firework.name == "selected" {
                 explode(firework: fireworkContainer)
-                fireworks.remove(at: index)
+                fireWorks.remove(at: index)
                 numExploded += 1
             }
         }
