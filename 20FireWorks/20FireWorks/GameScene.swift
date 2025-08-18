@@ -8,7 +8,7 @@
 import SpriteKit
 
 class GameScene: SKScene {
-//    var scoreLabel: SKLabelNode?
+    var scoreLabel: SKLabelNode?
     var gameTimer: Timer?
     var fireWorks = [SKNode]()
     let leftEdge = -22
@@ -18,7 +18,7 @@ class GameScene: SKScene {
     var score = 0 {
         didSet {
             
-          // scoreLabel?.text = "Score: \(score)"
+            scoreLabel?.text = "Score: \(score)"
         }
     }
     
@@ -31,15 +31,15 @@ class GameScene: SKScene {
         addChild(background)
         
     
-//        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
-//           scoreLabel?.fontColor = .white
-//           scoreLabel?.fontSize = 20
-//           scoreLabel?.text = "Score: \(score)"
-//           scoreLabel?.position = CGPoint(x: 800, y: 700)
-//
-//           if let scoreLabel = scoreLabel {
-//               addChild(scoreLabel)
-//           }
+        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabel?.fontColor = .white
+        scoreLabel?.fontSize = 20
+        scoreLabel?.text = "Score: \(score)"
+        scoreLabel?.position = CGPoint(x: 800, y: 700)
+
+           if let scoreLabel = scoreLabel {
+               addChild(scoreLabel)
+           }
         
         gameTimer = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(launchFireworks), userInfo: nil, repeats: true)
     }
